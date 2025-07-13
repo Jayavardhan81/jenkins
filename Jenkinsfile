@@ -10,13 +10,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh './run-tests.sh'
+                bat './run-tests.sh'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t my-app:latest .'
+                bat 'docker build -t my-app:latest .'
             }
         }
 
@@ -28,14 +28,14 @@ pipeline {
 
         stage('Deploy to K8s') {
             steps {
-                sh 'kubectl apply -f k8s/deployment.yaml'
-                sh 'kubectl apply -f k8s/service.yaml'
+                bat 'kubectl apply -f k8s/deployment.yaml'
+                bat 'kubectl apply -f k8s/service.yaml'
             }
         }
 
         stage('ArgoCD Sync') {
             steps {
-                sh 'argocd app sync my-app'
+                bat 'argocd app sync my-app'
             }
         }
     }
