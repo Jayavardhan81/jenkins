@@ -10,7 +10,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat './run-tests.bat'
+                bat 'run-tests.bat'
             }
         }
 
