@@ -36,7 +36,7 @@ pipeline {
         stage('ArgoCD Login') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'argocd-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                   bat 'argocd login localhost:8081 --username %USER% --password %PASS% --insecure --grpc-web'
+                   bat 'argocd login  192.168.0.32:8081 --username %USER% --password %PASS% --insecure --grpc-web'
                 }
             }
         }
