@@ -43,7 +43,7 @@ pipeline {
 
         stage('ArgoCD Sync') {
             steps {
-                bat 'argocd app sync my-app'
+                bat 'argocd app sync myapp'
             }
         }
     }
