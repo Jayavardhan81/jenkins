@@ -22,7 +22,11 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                echo 'Push stage skipped for now. Add registry creds later.'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
+                    bat 'docker tag my-app:latest jayavardhanmaradana81/my-app:latest'
+                    bat 'docker push jayavardhanmaradana81/my-app:latest'
+                }
             }
         }
 
